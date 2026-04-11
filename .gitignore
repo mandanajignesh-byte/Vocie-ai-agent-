@@ -1,0 +1,21 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Output folder (generated files — keep the .gitkeep)
+output/*
+!output/.gitkeep
+
+# ChromaDB
+chroma_db/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,54 @@
+{
+  "company": "AutoStream",
+  "tagline": "Automated video editing tools for content creators",
+  "documents": [
+    {
+      "id": "pricing_basic",
+      "title": "Basic Plan",
+      "category": "pricing",
+      "content": "AutoStream Basic Plan: $29/month. Includes 10 videos per month, up to 720p resolution output, access to standard template library, basic auto-editing tools, and email support (business hours only). Ideal for hobbyists and small creators just starting out."
+    },
+    {
+      "id": "pricing_pro",
+      "title": "Pro Plan",
+      "category": "pricing",
+      "content": "AutoStream Pro Plan: $79/month. Includes unlimited videos per month, up to 4K resolution output, AI-powered auto-captions, full template library, priority processing, advanced analytics dashboard, multi-platform batch export (YouTube, Instagram, TikTok, LinkedIn), and 24/7 priority support. Best for professional content creators and agencies."
+    },
+    {
+      "id": "pricing_comparison",
+      "title": "Plan Comparison",
+      "category": "pricing",
+      "content": "Comparing AutoStream plans: Basic ($29/mo) vs Pro ($79/mo). Basic gives 10 videos/month at 720p with email support. Pro gives unlimited videos at 4K with AI captions and 24/7 support. The Pro plan also includes AI captions, advanced analytics, and batch export — features not available on Basic."
+    },
+    {
+      "id": "policy_refund",
+      "title": "Refund Policy",
+      "category": "policy",
+      "content": "AutoStream refund policy: Refunds are available within the first 7 days of your subscription. After 7 days, no refunds will be issued. To request a refund within the eligible window, contact support@autostream.io with your account email and reason."
+    },
+    {
+      "id": "policy_support",
+      "title": "Support Policy",
+      "category": "policy",
+      "content": "AutoStream support: 24/7 live chat and priority email support is available exclusively for Pro Plan subscribers. Basic Plan subscribers have access to email support during business hours (9 AM – 5 PM EST, Monday–Friday). All users can access the self-service Help Center at help.autostream.io."
+    },
+    {
+      "id": "features_overview",
+      "title": "Product Features Overview",
+      "category": "features",
+      "content": "AutoStream is a SaaS platform providing AI-powered automated video editing for content creators. Core features: AI auto-edit (detects highlights, removes silences), automatic subtitle/caption generation, customizable templates for YouTube/Instagram/TikTok, one-click multi-platform export, background music library, color grading presets, thumbnail generator, and collaboration tools for teams."
+    },
+    {
+      "id": "getting_started",
+      "title": "Getting Started / Onboarding",
+      "category": "onboarding",
+      "content": "Getting started with AutoStream: 1) Sign up at autostream.io and choose a plan. 2) Upload your raw video (MP4, MOV, AVI supported). 3) Select a template or use AI Auto-Edit mode. 4) Customize captions, music, and branding. 5) Export to your platform with one click. New users get a 3-day free trial with Pro features. No credit card required for trial."
+    },
+    {
+      "id": "integrations",
+      "title": "Platform Integrations",
+      "category": "integrations",
+      "content": "AutoStream integrates directly with: YouTube (auto-upload), Instagram Reels, TikTok, LinkedIn Video, Twitter/X, and Facebook. Pro users can connect all platforms simultaneously for batch publishing. Basic users can connect up to 2 platforms."
+    }
+  ]
+}
