@@ -27,7 +27,7 @@ python3 vo.py            # voiceover + timings (VO_VOICE / VO_RATE env vars over
 python3 avatar_map.py    # lip-sync map for the kiosk avatar (needs ../src/orig.mp4)
 node mkassets.js         # icons, QR codes and timings -> assets/data.js
 node qa.js               # layout checks
-./finish.sh v2           # 4K render in 4 parallel segments, mux voiceover, 1080p copy
+./finish.sh v3           # one 1080p file (add "4k" as a second argument for a 4K master)
 ```
 
 The avatar frames come from `sr/avatar_sr.py 179.0 201.6 frames` run against the
