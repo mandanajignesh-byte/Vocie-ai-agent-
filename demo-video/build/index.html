@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chat360 – Agentic AI for Insurance (HD master)</title>
+<link rel="stylesheet" href="node_modules/@fontsource/poppins/400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/poppins/500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/poppins/600.css">
+<link rel="stylesheet" href="node_modules/@fontsource/poppins/700.css">
+<link rel="stylesheet" href="node_modules/@fontsource/poppins/800.css">
+<link rel="stylesheet" href="node_modules/@fontsource/inter/400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/inter/500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/inter/600.css">
+<link rel="stylesheet" href="node_modules/@fontsource/inter/700.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-devanagari/400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-devanagari/600.css">
+<style>
+:root{
+  --blue:#1d4ed8; --blue2:#2563eb; --blue-d:#1a3fb8; --ink:#0b1020; --mute:#5b6478; --mute2:#8a93a6;
+  --line:#e6eaf3; --green:#16a34a; --wa:#25d366; --amber:#d97706; --red:#dc2626;
+  --shadow:0 22px 60px rgba(29,78,216,.10),0 3px 10px rgba(15,23,42,.05);
+  --shadow-s:0 10px 30px rgba(29,78,216,.09),0 2px 6px rgba(15,23,42,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#eef2fb}
+body{font-family:Poppins,"Noto Sans Devanagari",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+svg{display:block;flex:none}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;
+  background:
+    radial-gradient(1200px 800px at 8% 0%, #ffffff 0%, rgba(255,255,255,0) 60%),
+    radial-gradient(1100px 900px at 100% 100%, #dfe7fa 0%, rgba(223,231,250,0) 62%),
+    linear-gradient(135deg,#f6f8fd 0%,#eef2fb 50%,#e6ecf9 100%)}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden}
+.scene.blue{background:radial-gradient(1400px 900px at 20% 10%,#2a62e8 0%,rgba(42,98,232,0) 60%),linear-gradient(135deg,#1d4ed8 0%,#1e55dd 55%,#2260e6 100%);color:#fff}
+.arc{position:absolute;border:1.5px solid rgba(29,78,216,.10);border-radius:50%}
+
+/* ───────── captions: one reserved band, always centred, never over content ───────── */
+#caps{position:absolute;left:0;right:0;top:912px;height:128px;z-index:50;pointer-events:none}
+.cap{position:absolute;left:50%;top:50%;max-width:1300px;width:max-content;padding:19px 46px 20px;border-radius:44px;
+  background:#1b2647;color:#fff;font-size:34px;line-height:1.36;font-weight:400;text-align:center;text-wrap:balance;letter-spacing:.1px;
+  box-shadow:0 18px 44px rgba(15,23,60,.26);opacity:0;visibility:hidden}
+.cap b{font-weight:400;color:#9ec1ff}
+.cap i{font-style:normal;color:#9ec1ff}
+#wm,#wmw{position:absolute;right:70px;top:956px;height:42px;z-index:40;opacity:0}
+
+/* ───────── module scene layout ───────── */
+.mhead{position:absolute;left:110px;top:112px;display:flex;align-items:center;gap:24px}
+.micon{width:78px;height:78px;border-radius:19px;background:linear-gradient(140deg,#2f6bf0,#1d4ed8);display:grid;place-items:center;color:#fff;box-shadow:0 14px 30px rgba(29,78,216,.32)}
+.mtitle{font-weight:700;font-size:56px;line-height:1.02;letter-spacing:-.6px}
+.msub{font-size:25px;color:var(--mute);margin-top:6px;white-space:nowrap}
+.feats{position:absolute;left:110px;top:290px;width:604px;display:flex;flex-direction:column;gap:30px}
+.feat{height:76px;background:#fff;border-radius:14px;border-left:4px solid var(--blue);box-shadow:var(--shadow-s);display:flex;align-items:center;gap:22px;padding:0 28px;font-size:24px;color:var(--mute);white-space:nowrap}
+.feat b{color:var(--ink);font-weight:600}
+.chk{width:36px;height:36px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff}
+.outcome{height:102px;border-radius:13px;background:linear-gradient(100deg,#1a45c9,#2a67ea);color:#fff;padding:23px 28px;box-shadow:0 18px 40px rgba(29,78,216,.30)}
+.outcome small{display:block;font-size:12.5px;font-weight:700;letter-spacing:.3em;opacity:.82;margin-bottom:6px}
+.outcome span{font-size:27px;font-weight:600;letter-spacing:-.2px;white-space:nowrap}
+.right{position:absolute;left:1330px;top:118px;width:476px;display:flex;flex-direction:column;gap:34px}
+.card{background:#fff;border-radius:22px;padding:26px 28px;box-shadow:var(--shadow)}
+.lbl{font-size:13px;font-weight:700;letter-spacing:.27em;color:#34415f;text-transform:uppercase;margin-bottom:16px}
+.ck{display:flex;align-items:flex-start;gap:15px;font-size:21px;color:#39445c;line-height:1.4;margin-top:13px}
+.ck:first-of-type{margin-top:0}
+.ck .bx{width:27px;height:27px;border-radius:7px;background:#19b45c;display:grid;place-items:center;color:#fff;margin-top:1px}
+.note{display:flex;align-items:center;gap:18px;padding:22px 26px}
+.note .ic{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:#e9f9ef}
+.note h4{font-size:21px;font-weight:600;line-height:1.25}
+.note p{font-size:15.5px;color:var(--mute2);margin-top:3px}
+.pill{display:inline-block;border-radius:30px;padding:7px 16px;font-size:15.5px;font-weight:600}
+.kv{display:flex;justify-content:space-between;align-items:baseline;font-size:21px;margin-top:14px}
+.kv span{color:var(--mute)} .kv b{font-weight:600}
+
+/* ───────── phone ───────── */
+.phone{position:absolute;left:835px;top:52px;width:400px;height:820px;border-radius:66px;background:#07080c;padding:11px;
+  box-shadow:0 0 0 1.5px #2a2d36 inset,0 40px 80px rgba(20,35,90,.24),0 10px 24px rgba(15,23,42,.14)}
+.screen{position:relative;width:100%;height:100%;border-radius:55px;overflow:hidden;background:#fff;display:flex;flex-direction:column;font-family:Inter,"Noto Sans Devanagari",sans-serif}
+.sbar{height:54px;flex:none;position:relative;background:#f6f6f6}
+.sbar .tm{position:absolute;left:36px;top:19px;font-size:16.5px;font-weight:600;letter-spacing:-.2px}
+.sbar .isl{position:absolute;left:50%;top:13px;width:116px;height:33px;margin-left:-58px;border-radius:20px;background:#07080c}
+.sbar .st{position:absolute;right:30px;top:21px;display:flex;gap:6px;align-items:center}
+.whead{height:62px;flex:none;background:#f6f6f6;border-bottom:1px solid #e3e3e3;display:flex;align-items:center;padding:0 14px 0 8px;gap:9px;position:relative}
+.whead .av{width:39px;height:39px;border-radius:50%;background:#dfe8ff;color:var(--blue);display:grid;place-items:center}
+.whead .nm{font-size:16.5px;font-weight:600;display:flex;align-items:center;gap:6px;letter-spacing:-.2px;white-space:nowrap}
+.whead .sb{font-size:12px;color:#8a8f98;margin-top:1px;white-space:nowrap}
+.whead .ph{margin-left:auto;color:var(--blue2)}
+.vf{width:15px;height:15px;border-radius:50%;background:#1fb85a;display:grid;place-items:center;color:#fff}
+.chat{flex:1;min-height:0;background:#efe7de;padding:8px 10px 10px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.mw{display:flex;flex-direction:column;flex:none;padding-top:8px}
+.b{max-width:83%;border-radius:11px;padding:9px 11px 6px;font-size:14.5px;line-height:1.4;color:#111b21;box-shadow:0 1px 1.5px rgba(11,20,26,.13);position:relative}
+.b.in{align-self:flex-start;background:#fff;border-top-left-radius:4px}
+.b.out{align-self:flex-end;background:#d9fdd3;border-top-right-radius:4px}
+.b.wide{width:83%}
+.b b{font-weight:600}
+.b .tag{display:table;font-size:9.5px;font-weight:600;color:var(--blue);background:#e6edff;border-radius:4px;padding:2px 6px;margin-bottom:5px;letter-spacing:.1px}
+.b .tag.g{color:#12803c;background:#dff6e7}
+.b .t{display:flex;justify-content:flex-end;align-items:center;gap:3px;font-size:10px;color:#8696a0;margin-top:2px}
+.b .t svg{color:#53bdeb}
+.b .ok{color:#12803c;font-weight:600}
+.b .row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-top:1px solid #eef0f2}
+.b .sm{font-size:12.5px;color:#667781}
+.sys{align-self:stretch;border-radius:7px;padding:5px 11px;font-size:12px;color:#3b6ea5;background:#dbeafb;font-weight:500}
+.sys.g{color:#12803c;background:#d7f5df;font-weight:600}
+.btn{display:block;text-align:center;border-radius:7px;padding:8px;font-size:13.5px;font-weight:600;margin-top:8px}
+.ibar{height:56px;flex:none;background:#f6f6f6;display:flex;align-items:center;gap:11px;padding:0 15px;color:var(--blue2);border-top:1px solid #e9e9e9}
+.ibar .in{flex:1;height:36px;border-radius:19px;background:#fff;border:1px solid #e0e0e0;font-size:14.5px;color:#9aa0a8;display:flex;align-items:center;padding:0 15px}
+.home{height:22px;flex:none;background:#f6f6f6;position:relative}
+.home:after{content:"";position:absolute;left:50%;bottom:8px;width:136px;height:5px;margin-left:-68px;border-radius:3px;background:#0b0b0f}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="scenes"></div>
+  <img id="wm" src="assets/chat360.png" alt="">
+  <img id="wmw" src="assets/chat360-white.png" alt="">
+  <div id="caps"></div>
+</div>
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script src="assets/data.js"></script>
+<script src="scenes.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

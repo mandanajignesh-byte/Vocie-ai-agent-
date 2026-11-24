@@ -1,0 +1,8 @@
+node_modules/
+out/
+vo_cache/
+src/
+sr/frames/
+sr/weights/
+build/assets/data.js
+__pycache__/
