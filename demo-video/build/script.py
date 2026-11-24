@@ -3,15 +3,16 @@ A sentence is a list of chunks (caption_html, spoken_text). The spoken parts of 
 sentence are joined and synthesised as one utterance so prosody stays natural;
 caption chunks are timed from the word boundaries.
 <b>..</b> marks the highlighted words in a caption.
+A caption of "+" keeps the previous caption on screen; "" shows none.
 A sentence may be a dict {"voice": "avatar", "chunks": [...]} for the kiosk avatar line.
 """
 
 SCENES = [
     ("intro", [
-        [("Chat360 · <b>Agentic AI</b> for Insurance", "Chat three sixty. Agentic A I, for insurance.")],
+        [("Chat360 · <b>Agentic AI</b> for Insurance", "Chat three sixty: Agentic A I for insurance.")],
     ]),
     ("words", [
-        [("Quote. Claim. Renew. Protect.", "Quote. Claim. Renew. Protect.")],
+        [("Quote. Claim. Renew. Protect.", "Quote.")], [("+", "Claim.")], [("+", "Renew.")], [("+", "Protect.")],
     ]),
     ("hero", [
         [("See how Chat360 <b>Agentic AI</b> runs the entire insurance journey,",

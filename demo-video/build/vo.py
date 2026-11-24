@@ -18,10 +18,11 @@ VOICES = {
     "narrator": dict(voice=os.environ.get("VO_VOICE", "hi-IN-SwaraNeural"), rate=os.environ.get("VO_RATE", "+8%"), pitch="+0Hz"),
     "avatar":   dict(voice="en-IN-NeerjaExpressiveNeural", rate="+14%", pitch="-4Hz"),
 }
-START_PAD = 1.3      # logo animates in before the first word
+START_PAD = 0.85     # logo animates in before the first word
 SENT_GAP = 0.36      # pause between sentences inside a scene
 SCENE_GAP = 1.25     # pause across a scene change
 END_HOLD = 3.6       # end card hold after last word
+SENT_GAP_OVERRIDE = {"words": 0.34}                       # tighter beat between the four words
 GAP_OVERRIDE = {"intro": 0.9, "words": 1.0, "cta": 1.3}   # pause after these scenes
 
 
@@ -107,13 +108,16 @@ async def main():
             for ci, (html, _) in enumerate(sent):
                 cs = t + starts[ci]
                 ce = t + (starts[ci + 1] if ci + 1 < len(sent) else dur)
+                if html == "+":                      # continuation: previous caption stays up
+                    scene["caps"][-1]["end"] = round(ce, 3)
+                    continue
                 scene["caps"].append({"html": html, "start": round(cs, 3), "end": round(ce, 3), "role": role})
             scene["sentences"].append({"start": round(t, 3), "end": round(t + dur, 3), "role": role,
                                        "words": [{"t": round(t + w["t"] - lead, 3), "d": round(w["d"], 3), "w": w["text"]} for w in words]})
             segs.append(audio); t += dur
             last_in_scene = ki == len(sentences) - 1
             last = last_in_scene and si == len(SCENES) - 1
-            gap = END_HOLD if last else (GAP_OVERRIDE.get(sid, SCENE_GAP) if last_in_scene else SENT_GAP)
+            gap = END_HOLD if last else (GAP_OVERRIDE.get(sid, SCENE_GAP) if last_in_scene else SENT_GAP_OVERRIDE.get(sid, SENT_GAP))
             segs.append(np.zeros(int(gap * SR), np.float32)); t += gap
         timeline["scenes"].append(scene)
     # scene windows: each scene begins a beat before its first word

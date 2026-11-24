@@ -16,7 +16,7 @@ const whead = (icon, name, sub, o = {}) => `<div class="whead" ${o.attr || ''} s
   <span style="color:#2563eb">${I('chevron-left', 26, 2.2)}</span><div class="av" style="${o.av || ''}">${icon ? I(icon, 20) : ''}</div>
   <div><div class="nm">${name}${o.verified === false ? '' : `<span class="vf">${I('check', 10, 3.6)}</span>`}</div><div class="sb">${sub}</div></div>
   ${o.phone === false ? '' : `<span class="ph">${I('phone', 21)}</span>`}</div>`;
-const phone = (o) => `<div class="phone" data-fx="rise" data-at="s+0.12" style="${o.left ? `left:${o.left}px` : ''}"><div class="screen">
+const phone = (o) => `<div class="phone" ${o.fx || ''} style="${o.left ? `left:${o.left}px` : ''}"><div class="screen">
   <div class="sbar" style="${o.white ? 'background:#fff' : ''}"><span class="tm">10:42</span><span class="isl"></span><span class="st">${SIG}${WIFI}${BAT}</span></div>
   ${o.head || ''}${o.body}
   ${o.input === false ? '' : `<div class="ibar">${I('plus', 23)}<div class="in">${o.input || 'Message'}</div>${I('camera', 21)}${I('mic', 21)}</div>`}
@@ -24,6 +24,8 @@ const phone = (o) => `<div class="phone" data-fx="rise" data-at="s+0.12" style="
 const tagH = (tag) => !tag ? '' : Array.isArray(tag) ? `<span class="tag ${tag[1]}">${tag[0]}</span>` : `<span class="tag">${tag}</span>`;
 const mi = (at, html, time, tag, cls = '') => `<div class="mw" data-fx="msg" data-at="${at}"><div class="b in ${cls}">${tagH(tag)}${html}<span class="t">${time}</span></div></div>`;
 const mo = (at, html, time, cls = '') => `<div class="mw" data-fx="msg" data-at="${at}"><div class="b out ${cls}">${html}<span class="t">${time}${TICK}</span></div></div>`;
+const mc = (at, text) => `<div class="mw" data-fx="msg" data-at="${at}" style="padding-top:6px"><div class="sysc">${text}</div></div>`;
+const mg = (at, who, col, html, time) => `<div class="mw" data-fx="msg" data-at="${at}"><div class="b in wide"><span class="snd" style="color:${col}">${who}</span>${html}<span class="t">${time}</span></div></div>`;
 const ms = (at, text, g) => `<div class="mw" data-fx="msg" data-at="${at}" style="padding-top:5px"><div class="sys ${g ? 'g' : ''}">${text}</div></div>`;
 const ck = (at, text) => `<div class="ck" data-fx="row" data-at="${at}"><span class="bx">${I('check', 17, 3.2)}</span><span>${text}</span></div>`;
 const note = (at, icon, h, p, bg = '#e9f9ef') => `<div class="card note" data-at="${at}"><span class="ic" style="background:${bg}">${icon}</span><div><h4>${h}</h4><p>${p}</p></div></div>`;
@@ -66,6 +68,11 @@ const CSS = `
 .mem .a{width:46px;height:46px;border-radius:50%;color:#fff;font-size:14.5px;font-weight:700;display:grid;place-items:center;flex:none}
 .mem h5{font-size:21px;font-weight:600;line-height:1.2}
 .mem p{font-size:15px;color:var(--mute2)}
+.sysc{align-self:center;background:rgba(255,255,255,.92);color:#54656f;font-size:11.5px;font-weight:500;border-radius:8px;padding:4px 11px;box-shadow:0 1px 1px rgba(11,20,26,.10)}
+.snd{display:block;font-size:12.5px;font-weight:600;margin-bottom:2px}
+.link{position:absolute;left:1238px;top:434px;width:124px;height:56px}
+.link i{position:absolute;left:0;right:0;top:27px;border-top:2.5px dashed #9db1e3}
+.link span{position:absolute;left:34px;top:0;width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;box-shadow:0 10px 24px rgba(29,78,216,.32)}
 .photo{height:124px;border-radius:8px;background:radial-gradient(120% 90% at 30% 20%,#8b95a5,#4b5563 55%,#273142);position:relative;display:grid;place-items:center;color:rgba(255,255,255,.92)}
 .photo .cp{position:absolute;left:8px;bottom:8px;background:rgba(10,14,22,.62);color:#fff;font-size:11px;border-radius:5px;padding:3px 7px;display:flex;gap:5px;align-items:center}
 .fl{font-size:10.5px;color:#8696a0;margin-top:7px}
@@ -181,14 +188,14 @@ S.hero = `<div class="scene" id="sc-hero" data-wm="c">
   <div class="chip" style="position:absolute;left:110px;top:206px" data-fx="left" data-at="s+0.2">THE CHAT360 INSURANCE SUITE</div>
   <div class="h-hero" data-fx="left" data-at="s+0.32">Agentic AI for<br><span>Insurance</span></div>
   <div style="position:absolute;left:110px;top:540px;display:flex;gap:16px">
-    ${['Life', 'General', 'Health', 'Motor', 'Bancassurance', 'POSP &amp; Agency'].map((t, i) => `<span class="tagp" data-fx="up" data-at="c1+${(0.95 + i * 0.32).toFixed(2)}"><i></i>${t}</span>`).join('')}</div>
-  <div class="plat" data-fx="up" data-at="c0+2.1"><div><small>ONE AGENTIC AI PLATFORM</small><strong>Claims · Sales · Renewals · Compliance</strong></div>
+    ${['Life', 'General', 'Health', 'Motor', 'Bancassurance', 'POSP &amp; Agency'].map((t, i) => `<span class="tagp" data-fx="up" data-at="s+${(0.75 + i * 0.11).toFixed(2)}"><i></i>${t}</span>`).join('')}</div>
+  <div class="plat" data-fx="up" data-at="s+1.55"><div><small>ONE AGENTIC AI PLATFORM</small><strong>Claims · Sales · Renewals · Compliance</strong></div>
     <div class="chs"><span class="ch">${WA(27, '#1d4ed8')}WhatsApp</span><span class="ch">${I('mic', 27)}Voice AI</span><span class="ch">${I('book-user', 27)}Kiosk</span><span class="ch">${I('globe', 27)}Web &amp; App</span></div></div>
-  ${phone({ left: 1300, head: whead('shield-check', 'Insure360', 'Business account'), body: `<div class="chat">
-    ${mi('s+1.0', 'Your cashless claim is approved. Pre-authorisation of <b>₹45,000</b> has been sent to the hospital.', '10:42', 'Insure360')}
-    ${mo('c0+1.5', 'That was quick, thank you!', '10:42')}
-    ${mi('c0+3.3', 'Happy to help, Rohan! Your policy summary and approval letter are attached.', '10:43')}
-    ${mi('c1+0.9', `<div class="pdf"><span class="pi">PDF</span><div><b>Cashless_Approval.pdf</b><div class="sm">1 page</div></div></div>`, '10:43', null, 'wide')}
+  ${phone({ left: 1300, fx: 'data-fx="rise" data-at="s+0.1"', head: whead('shield-check', 'Insure360', 'Business account'), body: `<div class="chat">
+    ${mi('c0+0.9', 'Your cashless claim is approved. Pre-authorisation of <b>₹45,000</b> has been sent to the hospital.', '10:42', 'Insure360')}
+    ${mo('c0+2.7', 'That was quick, thank you!', '10:42')}
+    ${mi('c1', 'Happy to help, Rohan! Your policy summary and approval letter are attached.', '10:43')}
+    ${mi('c1+1.7', `<div class="pdf"><span class="pi">PDF</span><div><b>Cashless_Approval.pdf</b><div class="sm">1 page</div></div></div>`, '10:43', null, 'wide')}
   </div>` })}</div>`;
 
 const MODS = [['shield-check', 'Insure360', 'Cashless claims &amp; PIVC compliance'], ['trending-up', 'RM360', 'Quote-to-bind &amp; CKYC onboarding'], ['refresh-cw', 'Engage360', 'Renewals &amp; persistency'], ['users', 'Workforce360', 'Banca, agency &amp; POSP co-pilot'],
@@ -196,13 +203,13 @@ const MODS = [['shield-check', 'Insure360', 'Cashless claims &amp; PIVC complian
 S.seven = `<div class="scene blue" id="sc-seven" data-wm="w">
   <div class="h-seven" data-fx="up" data-at="s+0.1">Seven modules. One platform.</div>
   ${MODS.map((m, i) => { const r = i < 4 ? 0 : 1, c = i < 4 ? i : i - 4; const x = r ? 326 + c * 432 : 110 + c * 432, y = r ? 532 : 364;
-    return `<div class="mcard" style="left:${x}px;top:${y}px" data-fx="up" data-at="s+${(0.55 + i * 0.16).toFixed(2)}"><span class="ti">${I(m[0], 30)}</span><div><h3>${m[1]}</h3><p>${m[2]}</p></div></div>`; }).join('')}
-  <div class="booth" data-fx="fade" data-at="s+2.3">Live demos at our booth &nbsp;·&nbsp; <b>Chat360 Agentic AI OS</b></div></div>`;
+    return `<div class="mcard" style="left:${x}px;top:${y}px" data-fx="up" data-at="s+${(0.4 + i * 0.13).toFixed(2)}"><span class="ti">${I(m[0], 30)}</span><div><h3>${m[1]}</h3><p>${m[2]}</p></div></div>`; }).join('')}
+  <div class="booth" data-fx="fade" data-at="s+1.7">Live demos at our booth &nbsp;·&nbsp; <b>Chat360 Agentic AI OS</b></div></div>`;
 
 S.health = mod({ id: 'health', icon: 'shield-check', title: 'Insure360', sub: 'Cashless claims on WhatsApp',
   feats: [['Cashless claim', 'on WhatsApp in seconds', 'c1'], ['Policy fetched', 'and eligibility checked', 'c3'], ['Pre-authorisation', 'sent to the insurer', 'c5'], ['Pay only your share', 'at discharge', 'c7']],
   outcome: ['Cashless, from request to discharge', 'c9'],
-  center: phone({ head: whead('shield-check', 'Insure360', 'Business account'), body: `<div class="chat">
+  center: phone({ fx: 'data-fx="rise" data-at="s+0.1"', head: whead('shield-check', 'Insure360', 'Business account'), body: `<div class="chat">
     ${mo('c2', "I've been admitted to City Hospital. Please start a <b>cashless claim</b>.", '10:02')}
     ${mi('c3+0.9', `${OK} Policy found from your number<div class="sm" style="font-size:13.5px">Comprehensive Health Plan</div>`, '10:02', 'Insure360', 'wide')}
     ${mi('c5+0.5', `<b>Cashless Request Sent</b><br>${OK} Eligibility confirmed<br>Pre-authorisation sent to insurer`, '10:03', 'Insure360', 'wide')}
@@ -217,29 +224,25 @@ S.health = mod({ id: 'health', icon: 'shield-check', title: 'Insure360', sub: 'C
       <div style="font-size:56px;font-weight:700;color:var(--blue);line-height:1.18;letter-spacing:-1.2px">₹7,150</div></div><span class="okc">${I('check', 34, 2.6)}</span></div>
       <div style="font-size:19.5px;font-weight:500;color:#27324a;margin-top:10px">Insurer pays the hospital directly</div></div>` });
 
-const mem = (at, ini, col, h, p, extra = '') => `<div class="mem" data-fx="row" data-at="${at}"><span class="a" style="background:${col}">${ini}</span><div><h5>${h}</h5><p>${p}</p></div>${extra}</div>`;
 S.motor = mod({ id: 'motor', icon: 'shield-check', title: 'Insure360', sub: 'Cashless motor claims with instant groups',
   feats: [['Photo to cashless claim', 'on WhatsApp', 'c1'], ['Claim group', 'created instantly', 'c3'], ['RM360', 'assesses damage from photos', 'c6'], ['Surveyor and insurer', 'join the group', 'c8']],
   outcome: ['One group. Everyone aligned.', 'c11'],
-  center: phone({ head: `<div style="position:relative;height:62px;flex:none">
-      ${whead('shield-check', 'Insure360', 'Business account', { style: 'position:absolute;inset:0', attr: 'data-out="c3+0.3"' })}
-      ${whead('users', 'Claim CLM-2026-64318', 'You, Service Centre, Insurance Desk, Insurer', { verified: false, av: 'background:#dcf5e3;color:#12803c', style: 'position:absolute;inset:0', attr: 'data-fx="fade" data-at="c3+0.3"' })}</div>`,
-    body: `<div class="chat">
-    <div class="mw" data-fx="msg" data-at="c1+0.6"><div class="b out" style="padding:4px 4px 5px;width:80%"><div class="photo">${I('car-front', 46, 1.6)}<span class="cp">${I('camera', 12)}Car_Damage.jpg · 2 photos</span></div><span class="t" style="padding-right:5px">10:22${TICK}</span></div></div>
-    ${mo('c2+0.3', 'Cashless at garage', '10:23', 'wide')}
-    ${ms('c3+0.7', 'Insure360 created this group', true)}${ms('c4+0.9', 'Service Centre joined')}${ms('c5+0.2', 'Insurance Desk joined')}${ms('c5+1.3', 'Insurer joined')}
-    ${mi('c7', `<b>Damage Assessment</b><div class="row" style="margin-top:6px"><span>Front Bumper, Headlamp</span><b>₹42,600</b></div>`, '10:24', 'RM360', 'wide')}
-    ${mi('c8+1.5', 'Survey done. Estimate approved.', '11:40', ['Surveyor joined · Insurer', 'g'], 'wide')}
-    ${mi('c9+0.6', `<span class="ok">✓ Ready for Pick-Up</span><div class="row" style="margin-top:6px"><span>Insurer pays garage</span><b>₹36,200</b></div><div class="row"><span>You pay at garage</span><b>₹6,400</b></div>`, '13:00', 'Insure360', 'wide')}
-  </div>` }),
-  right: `<div class="card" data-at="c3+0.2"><div class="lbl">Claim group · CLM-2026-64318</div>
-      ${mem('c4', 'You', '#1d4ed8', 'Customer', 'Group creator')}${mem('c4+0.9', 'SC', '#f59e0b', 'Service Centre', 'Garage network')}${mem('c5+0.2', 'ID', '#8b5cf6', 'Insurance Desk', 'Claims team')}
-      ${mem('c5+1.3', 'IN', '#16a34a', 'Insurer', 'Approvals &amp; payment')}${mem('c6+0.4', 'RM', '#2563eb', 'RM360', 'Assesses damage')}
-      ${mem('c8+0.5', 'SV', '#e5484d', 'Surveyor', 'Joined the group', `<span class="pill" style="margin-left:auto;background:#def6e6;color:#12803c;font-size:14px;padding:4px 12px">joined</span>`)}</div>
-    <div class="card" data-at="c9+0.9"><div class="lbl">Cashless settlement</div>
-      <div class="kv" style="margin-top:0;font-size:22px"><span>Insurer pays garage</span><b style="color:var(--green);font-weight:700">₹36,200</b></div>
-      <div class="kv" style="font-size:22px" data-fx="row" data-at="c10+0.5"><span>Customer pays garage</span><b style="font-weight:700">₹6,400</b></div></div>`,
-  rightStyle: 'top:104px;gap:30px' });
+  center: phone({ head: whead('shield-check', 'Insure360', 'Business account'), body: `<div class="chat">
+      <div class="mw" data-fx="msg" data-at="c1+0.5"><div class="b out" style="padding:4px 4px 5px;width:80%"><div class="photo">${I('car-front', 46, 1.6)}<span class="cp">${I('camera', 12)}Car_Damage.jpg · 2 photos</span></div><span class="t" style="padding-right:5px">10:22${TICK}</span></div></div>
+      ${mo('c2+0.2', 'My car got damaged in an accident. I want a <b>cashless claim</b> at a garage.', '10:22')}
+      ${mi('c3', 'Sorry to hear that, Rohan. Your motor policy is active. Setting up a claim group with the service centre, insurance desk and insurer.', '10:23', 'Insure360', 'wide')}
+      ${mi('c3+1.9', `<span class="ok">✓ Claim group created</span><br>CLM-2026-64318<span class="btn" style="background:#e6edff;color:var(--blue)">Open group</span>`, '10:23', 'Insure360', 'wide')}
+      ${mi('c10+0.9', `<span class="ok">✓ Claim settled, cashless</span><br>You pay only <b>₹6,400</b> at the garage.`, '13:00', 'Insure360', 'wide')}
+    </div>` })
+    + `<div class="link" data-fx="pop" data-at="c3+0.9"><i></i><span>${I('arrow-right', 26, 2.4)}</span></div>`
+    + phone({ left: 1366, fx: 'data-fx="rise" data-at="c3+0.8"', head: whead('users', 'Claim CLM-2026-64318', 'You, Service Centre, Insurance Desk, Insurer', { verified: false, av: 'background:#dcf5e3;color:#12803c' }), body: `<div class="chat">
+      ${mc('c3+1.6', 'Insure360 created this group')}${mc('c4+0.1', 'Insure360 added you')}${mc('c4+1.0', 'Service Centre joined')}${mc('c5+0.2', 'Insurance Desk joined')}${mc('c5+1.4', 'Insurer joined')}
+      ${mg('c7', 'RM360', '#1d4ed8', `<b>Damage Assessment</b><div class="row" style="margin-top:6px"><span>Front Bumper, Headlamp</span><b>₹42,600</b></div>`, '10:24')}
+      ${mc('c8+0.4', 'Surveyor joined')}
+      ${mg('c8+1.5', 'Surveyor', '#c2410c', 'Survey done. Estimate approved.', '11:40')}
+      ${mg('c9+0.6', 'Insure360', '#12803c', `<span class="ok">✓ Ready for Pick-Up</span><div class="row" style="margin-top:6px"><span>Insurer pays garage</span><b>₹36,200</b></div><div class="row" data-fx="row" data-at="c10+0.3"><span>You pay at garage</span><b>₹6,400</b></div>`, '13:00')}
+    </div>` }),
+  right: '' });
 
 S.rm = mod({ id: 'rm', icon: 'trending-up', title: 'RM360', sub: 'Quote-to-bind for term, health &amp; motor',
   feats: [['Native WhatsApp Flows,', 'no redirects', 'c0+0.5'], ['AI advisor', 'compares plans and riders', 'c1'], ['Recovers drop-offs', 'with a timely nudge', 'c3']],
@@ -344,7 +347,7 @@ S.pivc = mod({ id: 'pivc', icon: 'clipboard-check', title: 'Insure360', sub: 'Co
 S.kiosk = mod({ id: 'kiosk', icon: 'book-user', title: 'Avatar Kiosk', sub: 'Phygital branch &amp; booth experience',
   feats: [['Lifelike AI avatar', 'in 12+ languages', 'c0+0.6'], ['Instant policy', 'endorsements', 'c5'], ['Continue on WhatsApp', 'with one scan', 'c6']],
   outcome: ['A 24/7 concierge at every branch', 'c7'],
-  center: `<div class="kiosk" data-fx="rise" data-at="s+0.12"><div class="kbody"><div class="kscr"><img id="avatar" alt=""></div><div class="kchin">Chat360</div></div><div class="kneck"></div><div class="kbase"></div></div>`,
+  center: `<div class="kiosk"><div class="kbody"><div class="kscr"><img id="avatar" alt=""></div><div class="kchin">Chat360</div></div><div class="kneck"></div><div class="kbase"></div></div>`,
   right: `<div class="card" data-at="c1-0.2"><div class="lbl">Customer asks</div><div class="bub" style="background:var(--blue);color:#fff;font-size:21px">How do I add my newborn to my health policy?</div></div>
     <div class="card" data-at="c2"><div class="lbl">Avatar is answering</div>${wave('c2', 26, '#1d4ed8', 36)}
       <h4 style="font-size:19px;font-weight:600;margin:16px 0 4px">Endorsement checklist</h4>

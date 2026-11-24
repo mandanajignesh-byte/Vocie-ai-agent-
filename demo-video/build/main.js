@@ -63,8 +63,10 @@
         tl.fromTo(b, { scaleY: a * .45 }, { scaleY: Math.min(1, a + .42), duration: d, repeat: reps, yoyo: true, ease: 'sine.inOut' }, t0 + (k % 5) * .04);
       });
     });
-    tl.to(el, { autoAlpha: 1, duration: i ? .45 : .6, ease: 'power1.out' }, s.start);
-    tl.to(el, { autoAlpha: 0, duration: .34, ease: 'power1.in' }, s.end - .34);
+    // scenes cross-dissolve into each other; only the very last one fades to the background (clean loop)
+    const last = i === TL.scenes.length - 1;
+    tl.to(el, { autoAlpha: 1, duration: i ? .5 : .6, ease: 'power1.inOut' }, s.start);
+    tl.to(el, { autoAlpha: 0, duration: last ? .45 : .4, ease: 'power1.inOut' }, last ? s.end - .45 : s.end);
     // watermark logo: colour on light scenes, white on blue, hidden where a big logo is on screen
     const m = el.dataset.wm;
     tl.to('#wm', { autoAlpha: m === 'c' ? 1 : 0, duration: .3, ease: 'none' }, s.start + (m === 'c' ? .15 : -.3 < 0 ? Math.max(0, s.start - .3) - s.start : 0));
@@ -72,10 +74,10 @@
   });
 
   // scene-specific motion
-  { const s = byId.words, w = s.sentences[0].words, els = [...document.querySelectorAll('#sc-words .word')];
-    els.forEach((el, k) => { const t = w[k].t - .06, next = k < 3 ? w[k + 1].t - .06 : s.end - .34;
-      tl.fromTo(el, { autoAlpha: 0, scale: .82 }, { autoAlpha: 1, scale: 1, duration: .42, ease: 'back.out(1.7)' }, t);
-      if (k < 3) tl.to(el, { autoAlpha: 0, scale: 1.06, duration: .16, ease: 'power1.in' }, next - .16); }); }
+  { const s = byId.words, w = s.sentences.map(se => se.words[0].t), els = [...document.querySelectorAll('#sc-words .word')];
+    els.forEach((el, k) => { const t = k ? w[k] - .08 : s.start + .12;      // first word arrives with the blue card
+      tl.fromTo(el, { autoAlpha: 0, scale: .84 }, { autoAlpha: 1, scale: 1, duration: .36, ease: 'back.out(1.7)' }, t);
+      if (k < 3) tl.to(el, { autoAlpha: 0, scale: 1.05, duration: .14, ease: 'power1.in' }, w[k + 1] - .08 - .14); }); }
   { const s = byId.pivc; tl.fromTo('#knob', { left: '8%' }, { left: '49%', duration: 1.2, ease: 'power2.inOut' }, cue(s, 'c3+0.25'));
     document.querySelectorAll('#sc-pivc .dots i').forEach((d, k) => {
       const dur = .5, reps = Math.ceil((s.end - s.start) / dur);
@@ -91,7 +93,7 @@
   // captions: fade/rise in on the spoken word, hold through the phrase, clear before the next
   caps.forEach((c, k) => {
     const next = caps[k + 1];
-    const out = next && next.start - c.end < .9 ? next.start - .2 : Math.min(c.end + .45, c.sceneEnd - .2);
+    const out = next && next.start - c.end < .9 ? next.start - .2 : Math.min(c.end + .45, c.sceneEnd - .05);
     gsap.set(c.el, { xPercent: -50, yPercent: -50 });
     tl.fromTo(c.el, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: .26, ease: 'power2.out' }, Math.max(0, c.start - .05));
     tl.to(c.el, { autoAlpha: 0, duration: .16, ease: 'power1.in' }, Math.max(c.start + .5, out));
@@ -114,7 +116,7 @@
     const f = Math.min(nFrames - 1, Math.max(0, Math.round((srcTime(tt) - AV.src0) * AV.fps)));
     if (f === curFrame) return;
     curFrame = f;
-    avImg.src = `${window.AVATAR_DIR || '../sr/frames'}/a_${String(f).padStart(4, '0')}.jpg`;
+    avImg.src = `${window.AVATAR_DIR || '../sr/frames_nat'}/a_${String(f).padStart(4, '0')}.jpg`;
     await avImg.decode().catch(() => 0);
   };
 

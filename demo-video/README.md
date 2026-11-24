@@ -14,6 +14,7 @@ frame-by-frame at 3840×2160, so text and phone mockups stay sharp on a TV.
 | `build/render.js` | Frame-accurate 4K render of a frame range (Playwright → ffmpeg) |
 | `build/qa.js` | Checks every caption is centred and never overlaps content or the logo |
 | `sr/avatar_sr.py` | Upscales the kiosk avatar clip taken from the original low-res video |
+| `sr/natural.py` | Blends the upscaled avatar back toward the source footage + grain so it doesn't look AI-restored |
 
 ## Rebuild
 
@@ -26,12 +27,12 @@ python3 vo.py            # voiceover + timings (VO_VOICE / VO_RATE env vars over
 python3 avatar_map.py    # lip-sync map for the kiosk avatar (needs ../src/orig.mp4)
 node mkassets.js         # icons, QR codes and timings -> assets/data.js
 node qa.js               # layout checks
-node render.js 0 8005 ../out/video.mp4 2   # frames [start,end) at 2x = 4K
+./finish.sh v2           # 4K render in 4 parallel segments, mux voiceover, 1080p copy
 ```
 
 The avatar frames come from `sr/avatar_sr.py 179.0 201.6 frames` run against the
 original video (`src/orig.mp4`) with the Real-ESRGAN `realesr-general-x4v3` and
-`GFPGANv1.4` weights in `sr/weights/`. Swap in a native HD avatar clip if one is available.
+`GFPGANv1.4` weights in `sr/weights/`, followed by `sr/natural.py frames_nat 0.28 0.5`. Swap in a native HD avatar clip if one is available.
 
 To change wording, edit `script.py` (caption text and spoken text are separate, e.g.
 `₹45,000` is spoken as "forty-five thousand rupees"), then rerun from `vo.py`.
