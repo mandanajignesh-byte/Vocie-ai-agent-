@@ -199,7 +199,7 @@ S.hero = `<div class="scene" id="sc-hero" data-wm="c">
   </div>` })}</div>`;
 
 const MODS = [['shield-check', 'Insure360', 'Cashless claims &amp; PIVC compliance'], ['trending-up', 'RM360', 'Quote-to-bind &amp; CKYC onboarding'], ['refresh-cw', 'Engage360', 'Renewals &amp; persistency'], ['users', 'Workforce360', 'Banca, agency &amp; POSP co-pilot'],
-  ['book-user', 'Avatar Kiosk', 'Phygital branch experience'], ['eye', 'Agent360', 'Team visibility &amp; supervision'], ['star', 'Reach360', 'Reviews, profiles &amp; social presence']];
+  ['book-user', 'Avatar Kiosk', 'Branch &amp; booth experience'], ['eye', 'Agent360', 'Team visibility &amp; supervision'], ['star', 'Reach360', 'Reviews, profiles &amp; social presence']];
 S.seven = `<div class="scene blue" id="sc-seven" data-wm="w">
   <div class="h-seven" data-fx="up" data-at="s+0.1">Seven modules. One platform.</div>
   ${MODS.map((m, i) => { const r = i < 4 ? 0 : 1, c = i < 4 ? i : i - 4; const x = r ? 326 + c * 432 : 110 + c * 432, y = r ? 532 : 364;
@@ -286,7 +286,7 @@ S.engage = mod({ id: 'engage', icon: 'refresh-cw', title: 'Engage360', sub: 'Ren
   rightStyle: 'top:96px;gap:28px' });
 
 S.workforce = mod({ id: 'workforce', icon: 'users', title: 'Workforce360', sub: 'Co-pilot for bancassurance, agency &amp; POSP',
-  feats: [['Instant quotes', 'from a voice note', 'c1'], ['Co-branded PDFs', 'in seconds', 'c2'], ['Coaching', 'on riders and rules', 'c3'], ['Leads auto-logged', 'in Salesforce', 'c5']],
+  feats: [['Instant quotes', 'from a voice note', 'c1'], ['Co-branded PDFs', 'in seconds', 'c2'], ['Coaching', 'on riders and rules', 'c3'], ['Leads auto-logged', 'in the CRM', 'c5']],
   outcome: ['Quotes in seconds, not hours', 'c5+1.6'],
   center: phone({ head: whead('users', 'Workforce360', 'Advisor mode'), body: `<div class="chat">
     <div class="mw" data-fx="msg" data-at="s+1.2"><div class="b out"><div class="vn"><span class="pl">${I('mic', 16, 2.2)}</span>${wave('s+1.2', 22, '#5f9a7c', 22)}<span class="sm" style="margin-left:4px">0:09</span></div>
@@ -304,7 +304,7 @@ S.workforce = mod({ id: 'workforce', icon: 'users', title: 'Workforce360', sub: 
       <div class="kv" data-fx="row" data-at="c1+1.2"><span>Cover</span><b>₹1 Crore · till 60</b></div><div class="kv" data-fx="row" data-at="c1+1.5"><span>Rider</span><b>Accidental death</b></div></div>
     <div class="card" data-at="c3+0.1"><div class="lbl">Advisor coaching</div>
       ${ck('c3+1.6', 'Rider explained in plain language')}${ck('c4+0.9', 'Underwriting rules from product docs')}${ck('c4+2.2', 'Next-best question to ask the client')}</div>
-    <div class="card note" data-at="c5+0.4"><span class="ic" style="background:#e3f1fd;border-radius:13px;color:#0f8fe0">${I('cloud', 27, 2.2)}</span><div><div class="lbl" style="margin-bottom:3px;font-size:12.5px">CRM sync</div><h4>Lead + quote ID logged</h4><p>Synced to Salesforce</p></div></div>`,
+    <div class="card note" data-at="c5+0.4"><span class="ic" style="background:#e3f1fd;border-radius:13px;color:#0f8fe0">${I('cloud', 27, 2.2)}</span><div><div class="lbl" style="margin-bottom:3px;font-size:12.5px">CRM sync</div><h4>Lead + quote ID logged</h4><p>Synced to your CRM</p></div></div>`,
   rightStyle: 'top:110px;gap:30px' });
 
 const conv = (at, ini, col, name, msg, st, cls, time) => `<div class="mw" data-fx="msg" data-at="${at}"><div class="conv"><span class="a" style="background:${col}">${ini}</span><div style="flex:1"><h6>${name}<span>${time}</span></h6><p>${msg}</p><span class="stt ${cls}">${st}</span></div></div></div>`;
@@ -344,7 +344,7 @@ S.pivc = mod({ id: 'pivc', icon: 'clipboard-check', title: 'Insure360', sub: 'Co
     ${note('c4+0.4', WA(27), 'Consent summary on WhatsApp', 'Transcript stored in the audit vault')}`,
   rightStyle: 'top:112px;gap:30px' });
 
-S.kiosk = mod({ id: 'kiosk', icon: 'book-user', title: 'Avatar Kiosk', sub: 'Phygital branch &amp; booth experience',
+S.kiosk = mod({ id: 'kiosk', icon: 'book-user', title: 'Avatar Kiosk', sub: 'Branch &amp; booth experience',
   feats: [['Lifelike AI avatar', 'in 12+ languages', 'c0+0.6'], ['Instant policy', 'endorsements', 'c5'], ['Continue on WhatsApp', 'with one scan', 'c6']],
   outcome: ['A 24/7 concierge at every branch', 'c7'],
   center: `<div class="kiosk"><div class="kbody"><div class="kscr"><img id="avatar" alt=""></div><div class="kchin">Chat360</div></div><div class="kneck"></div><div class="kbase"></div></div>`,
@@ -382,7 +382,7 @@ S.reach = mod({ id: 'reach', icon: 'star', title: 'Reach360', sub: 'Reputation &
   rightStyle: 'top:96px;gap:26px' });
 
 const HUB = [[960, 258, 'shield-check', 'Insure360', 'Claims &amp; compliance'], [1456, 356, 'refresh-cw', 'Engage360', 'Renewals'], [1580, 572, 'trending-up', 'RM360', 'Quote-to-bind'], [1238, 742, 'users', 'Workforce360', 'Sales co-pilot'],
-  [682, 742, 'book-user', 'Avatar Kiosk', 'Phygital AI'], [340, 572, 'eye', 'Agent360', 'Team visibility'], [464, 356, 'star', 'Reach360', 'Reputation']];
+  [682, 742, 'book-user', 'Avatar Kiosk', 'In-branch AI'], [340, 572, 'eye', 'Agent360', 'Team visibility'], [464, 356, 'star', 'Reach360', 'Reputation']];
 S.hub = `<div class="scene" id="sc-hub" data-wm="c">
   <div style="position:absolute;left:0;right:0;top:54px;text-align:center" data-fx="fade" data-at="s+0.05"><span class="chip">CHAT360 AGENTIC AI OS</span></div>
   <div class="h-hub" data-fx="up" data-at="s+0.15">One platform for <span>every insurance journey</span></div>

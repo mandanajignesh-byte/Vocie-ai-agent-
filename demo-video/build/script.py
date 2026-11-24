@@ -77,14 +77,14 @@ SCENES = [
     ]),
     ("workforce", [
         [("<b>Workforce360</b> is a co-pilot for bank RMs, agents and POSPs.",
-          "Workforce three sixty is a co-pilot for bank R Ms, agents, and P O S Ps.")],
+          "Workforce three sixty is a co-pilot for bank R Ems, agents, and P O S Pees.")],
         [("One voice note returns <b>accurate quotes</b>", "One voice note returns accurate quotes,"),
-         ("and a co-branded PDF, ready to share.", "and a co-branded P D F, ready to share.")],
+         ("and a co-branded PDF, ready to share.", "and a co branded P D F, ready to share.")],
         [("It closes training gaps by <b>coaching advisors</b>", "It closes training gaps by coaching advisors"),
          ("on riders, underwriting rules and how to pitch them.",
           "on riders, underwriting rules, and how to pitch them.")],
-        [("And every lead is <b>logged in Salesforce</b>, automatically.",
-          "And every lead is logged in Salesforce, automatically.")],
+        [("And every lead is <b>logged in the CRM</b>, automatically.",
+          "And every lead is logged in the C R M, automatically.")],
     ]),
     ("agent", [
         [("<b>Agent360</b> gives managers full visibility of the team.",
