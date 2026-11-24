@@ -104,8 +104,9 @@ SCENES = [
         [("In the branch, the <b>Avatar Kiosk</b>", "In the branch, the Avatar Kiosk"),
          ("answers policy questions face-to-face.", "answers policy questions face to face.")],
         {"voice": "avatar", "chunks": [
-            ("<i>Avatar:</i> “Congratulations! You can add your baby to your health policy mid-term.",
-             "Congratulations! You can add your baby to your health policy mid-term."),
+            ("<i>Avatar:</i> “Congratulations! You can add your baby",
+             "Congratulations! You can add your baby"),
+            ("to your health policy mid-term.", "to your health policy mid-term."),
             ("You’ll just need the birth certificate and the endorsement form.”",
              "You'll just need the birth certificate, and the endorsement form.")]},
         [("It handles <b>endorsements</b> instantly.", "It handles endorsements instantly.")],

@@ -342,16 +342,16 @@ S.pivc = mod({ id: 'pivc', icon: 'clipboard-check', title: 'Insure360', sub: 'Co
   rightStyle: 'top:112px;gap:30px' });
 
 S.kiosk = mod({ id: 'kiosk', icon: 'book-user', title: 'Avatar Kiosk', sub: 'Phygital branch &amp; booth experience',
-  feats: [['Lifelike AI avatar', 'in 12+ languages', 'c0+0.6'], ['Instant policy', 'endorsements', 'c4'], ['Continue on WhatsApp', 'with one scan', 'c5']],
-  outcome: ['A 24/7 concierge at every branch', 'c6'],
+  feats: [['Lifelike AI avatar', 'in 12+ languages', 'c0+0.6'], ['Instant policy', 'endorsements', 'c5'], ['Continue on WhatsApp', 'with one scan', 'c6']],
+  outcome: ['A 24/7 concierge at every branch', 'c7'],
   center: `<div class="kiosk" data-fx="rise" data-at="s+0.12"><div class="kbody"><div class="kscr"><img id="avatar" alt=""></div><div class="kchin">Chat360</div></div><div class="kneck"></div><div class="kbase"></div></div>`,
   right: `<div class="card" data-at="c1-0.2"><div class="lbl">Customer asks</div><div class="bub" style="background:var(--blue);color:#fff;font-size:21px">How do I add my newborn to my health policy?</div></div>
     <div class="card" data-at="c2"><div class="lbl">Avatar is answering</div>${wave('c2', 26, '#1d4ed8', 36)}
       <h4 style="font-size:19px;font-weight:600;margin:16px 0 4px">Endorsement checklist</h4>
-      <div style="font-size:17.5px;color:#39445c;line-height:1.75"><div data-fx="row" data-at="c3+0.9">${OK}&nbsp; Birth certificate</div><div data-fx="row" data-at="c3+2.2">${OK}&nbsp; Endorsement request form</div></div></div>
-    <div class="card" data-at="c5+0.3" style="display:flex;gap:20px;align-items:center;padding:22px 24px"><div style="width:116px;height:116px;flex:none">${QRS.site}</div>
+      <div style="font-size:17.5px;color:#39445c;line-height:1.75"><div data-fx="row" data-at="c4+0.9">${OK}&nbsp; Birth certificate</div><div data-fx="row" data-at="c4+2.2">${OK}&nbsp; Endorsement request form</div></div></div>
+    <div class="card" data-at="c6+0.3" style="display:flex;gap:20px;align-items:center;padding:22px 24px"><div style="width:116px;height:116px;flex:none">${QRS.site}</div>
       <div><h4 style="font-size:20px;font-weight:600;display:flex;gap:9px;align-items:center">${WA(21)}Continue on WhatsApp</h4><p style="font-size:14.5px;line-height:1.5;color:var(--mute2);margin-top:5px">Scan the code on the kiosk. The checklist follows you, so there are no repeat questions.</p></div></div>
-    <div class="card note" data-at="c5+1.9" style="padding:18px 24px"><span class="ic" style="width:44px;height:44px">${WA(24)}</span><div><h4 style="font-size:19.5px">Documents requested on WhatsApp</h4><p>Upload link sent to Priya</p></div></div>`,
+    <div class="card note" data-at="c6+1.9" style="padding:18px 24px"><span class="ic" style="width:44px;height:44px">${WA(24)}</span><div><h4 style="font-size:19.5px">Documents requested on WhatsApp</h4><p>Upload link sent to Priya</p></div></div>`,
   rightStyle: 'top:96px;gap:24px' });
 
 const vis = (n, p, col) => `<div class="vis"><span>${n}</span><span class="trk"><i data-fx="bar" data-at="c3+0.7" style="width:${p}%;background:${col}"></i></span><em>${p}%</em></div>`;
